@@ -275,9 +275,85 @@ let a = 1 + 2;
 // Значение переменной a равно 1 + 2 (3).
 let b = 2;
 // Значение переменной b равно 2.
-let result = 8 - (a = b + 4)
+let result = 8 - (a = b + 3)
 
 console.log("Результат в скобках: " + a);
 // 5
 console.log("Общий результат " + result);
 // 3
+
+// Присваивание по цепочке
+
+resultOne = resultTwo = resultThree = 1 + 2;
+
+console.log(resultOne);
+console.log(resultTwo);
+console.log(resultThree);
+
+// Проще -
+
+resultOne = 1 + 2;
+resultTwo = resultOne;
+resultThree = resultOne;
+
+console.log(resultOne);
+console.log(resultTwo);
+console.log(resultThree);
+
+// Сокращённая запись вычислений с присваиванием
+
+users = 5;
+users = users + 3;
+users = users * 2;
+
+// Можно записать так:
+
+users = 5;
+console.log(users);
+// Вывод => 5
+
+users += 1 + 2;
+console.log(users);
+// Вывод => 8
+
+// Инкременты & декременты
+
+// Инкремент "++" - увеличивает значение переменной на 1:
+
+let addUser = 2;
+addUser++;
+console.log(addUser);
+// Вывод => 3
+
+// Работает так же как и:
+// addUser = addUser + 1;
+
+//Или как:
+// addUser +=1;
+
+// Декремент "--" - уменьшает значение переменной на 1:
+
+let removeUser = 2;
+removeUser--;
+console.log(removeUser);
+// Вывод => 1
+
+// Примечания - инкремент & декремент нужно прописывать
+// на кончике переменной, и инк./дек. можно применить только
+// к переменной. Попытка использовать его на значении вроде
+// 5++ приведёт к ошибке синтаксиса.
+
+// Инкременты и декременты можно прописывать как до так и
+// после переменной:
+
+// Постфиксная форма -
+let usersCounter = 0;
+let newUsers = usersCounter++;
+console.log(newUsers);
+// Вывод => 0
+
+// Префиксная форма -
+usersCounter = 0;
+newUsers = ++usersCounter;
+console.log(newUsers);
+// Вывод => 1
