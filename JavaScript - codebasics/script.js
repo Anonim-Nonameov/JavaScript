@@ -158,10 +158,10 @@ console.log(rubles);
 let info = "We couldn't verify you mother's maiden name.";
 let intro = 'Here is important information about your account security.';
 
-let firstName = 'Joffrey';
-let greeting = 'Hello';
+let firstNameLet = 'Joffrey';
+let greetingLet = 'Hello';
 
-console.log(greeting + ', ' + firstName + '!'); 
+console.log(greetingLet + ', ' + firstNameLet + '!'); 
 console.log(intro + '\n' + info);
 
 
@@ -264,8 +264,8 @@ console.log(userName[variableForIndex]); // ==> A
 // Но если мы запишем в индексе цифру 4 - консоль выдаст undefined.
 // Почему? потому что такого индекса просто нет.
 
-const name = 'Na\nharis';
-console.log(name[7]);
+const nameEx = 'Na\nharis';
+console.log(nameEx[7]);
 
 // ПРИМЕЧАНИЕ: символы, такие как \n - тоже
 // индексируются, т.к они тоже символы.
@@ -452,8 +452,8 @@ console.log('one' * 'two');
 // в программировании, без них невозможно
 // сделать практически ничего.
 
-const result = reverse('Hello!')
-console.log(result);
+// const result = reverse('Hello!')
+// console.log(result);
 // Вывод => !olleH
 
 // Прим. - такой функции как reverse
@@ -481,12 +481,11 @@ console.log(result);
 // а может быть вообще ни одного.
 
 // Кол-во зависит от используемой функции,
-// например, функция pow() (взята
-// с hexlet.com) принимает на вход ДВА аргум.
+// например, функция pow() принимает на вход ДВА аргум.
 // и возводит число, переданное первым аргументом,
 // в степень, переданную вторым аргументом:
 
-const resultTwo = pow(2,3);
+const resultTwo = Math.pow(2,3);
 // 2 * 2 * 2
 
 console.log(resultTwo);
@@ -500,8 +499,8 @@ console.log(resultTwo);
 console.log(3 + 5);
 // Наше обычное представление, вывод => 8
 
-const sumFoo = sum(3,5)
-console.log(sumFoo);
+// const sumFoo = sum(3,5)
+// console.log(sumFoo);
 // В виде функции. В первом аргументе первое слогаемое,
 // а во втором - второе. Выводится будет 8.
 
