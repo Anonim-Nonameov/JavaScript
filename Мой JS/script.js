@@ -24,3 +24,32 @@
 // let sayHelloToGasan = (a) => { alert('Hello' + a); }
 
 // sayHelloToGasan(' Gasan');
+
+let a = 5;
+
+do {
+    console.log(a);
+    a--;
+} while(a > 10);
+
+console.log( )
+
+let b = 20;
+
+while (b > 0) {
+    console.log(b)
+    b--;
+}
+
+console.log( )
+
+let c = 30;
+
+if (c === c) {
+    while (c > 0) {
+        console.log(c)
+        c--;
+    }
+} else {
+    console.log('Не выведу!')
+}
