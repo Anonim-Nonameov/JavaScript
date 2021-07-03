@@ -1376,10 +1376,15 @@ console.log(MyName); // Tirion
 
 MyName = 'Tirion';
 console.log(MyName.length) // => 6
+
+console.log( );
+
 MyName.length = 100;
 console.log(MyName.lenth) // => 6
 
 // Вместо изменения значения можно заменить значение. Для этого понадобятся переменные:
+
+console.log( );
 
 MyName = "Tirion"
 MyName = MyName.toUpperCase();
@@ -1420,6 +1425,8 @@ MyName = 'Shaya';
 MyName = MyName.length + 5;
 console.log(MyName) // => 10
 
+console.log( );
+
 MyName = 'Shaya'
 console.log(`Hi, ${MyName.toUpperCase()}!`) // => Hi, SHAYA!
 
@@ -1428,7 +1435,13 @@ console.log(`Hi, ${MyName.toUpperCase()}!`) // => Hi, SHAYA!
 Name = 'Robb';
 MyName = 'Shaya';
 console.log(MyName.length) // => 5
+
+console.log( );
+
 console.log(MyName.toLowerCase()) // => shaya
+
+console.log( );
+
 console.log(Math.min(Name.length, MyName.length)); // => 4
 
 // Задача из урока:
@@ -1455,5 +1468,88 @@ console.log(`Last: ${text[55]}`)
 Решение учителя:
 
 console.log(`First: ${text[0]}\nLast: ${text[text.length - 1]}`)
+
+*/
+
+// Цепочка вызовов
+
+// У чисел есть метод, который преобразует их в строку:
+
+console.log( )
+
+let peopleCount = 5;
+peopleCount.toString();
+console.log(peopleCount) // => '5'
+
+console.log( );
+
+// Но сработает ли следующий код? -
+
+Name = 'Tirion';
+console.log(Name.length.toString())
+
+// Синтаксис нескольких подряд идущих точек мы (а точнее я) встречаем впервые,
+// но все операции которые здесь встречаются - нам (а точнее мне) уже знакомы.
+// Всё, что произошло в коде выше - это объединение уже известных возможностей языка.
+// Такое в программировании происходит довольно часто. Даже не зная синтаксиса,
+// можно пробовать комбинировать различные подходы, и есть большая вероятность,
+// что они заработают.
+
+// Самый простой способ понтять как работает этот код - разбить его на отдельные
+// операции, примерно вот так:
+
+console.log( )
+
+Name = 'Tirion';
+len = Name.length;
+console.log(len.toString())
+
+// Эти примеры схожи. Можно выполнять операции последовательно с промежуточным
+// созданием констант, а можем строить непрерывную цепочку из свойств и методов.
+// В цепочках вычисления всегда идут слева направо.
+
+// Вот ещё один пример:
+
+console.log( )
+
+Name = 'Tirion';
+console.log(Name.toUpperCase().toLowerCase());
+
+// Подобный код требует небольших умственных усилий. Важно понимать, что toLowerCase()
+// применяется к результату вызова функции, которая находится левее.
+// А функция toUpperCase() возвращает строку.
+// Новички очень часто делают ошибки в цепочках с методами, забый ставить вызов:
+
+/*
+
+console.log(Name.toUpperCase.toLowerCase());
+
+*/
+
+// Продолжая эту идею, возможно строить бесконечно длинные (но в нашем случае,
+// бесполезные) цепочки:
+
+console.log( )
+
+Name = 'Tirion'
+console.log(Name.toUpperCase().toLowerCase().length.toString().length);
+
+// Задача из урока:
+
+/*
+
+Текст задачи, задача:
+
+С помощью метода substring() получите часть предложения, записанного в константу text*,
+с 4 по 15 символ включительно.
+Полученную подстроку обработать методом trim() и вывести на экран длину подстроки.
+Выполнить всё это без использования переменных!
+
+* - в перем. text написано:
+'When \t\n you play a \t\n game of thrones you win or you die.'
+
+Моё решение (пришлось хорошенько подумать):
+
+console.log(text.substring(3, 15).trim().length)
 
 */
