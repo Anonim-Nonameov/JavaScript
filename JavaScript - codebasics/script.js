@@ -1553,3 +1553,5 @@ console.log(Name.toUpperCase().toLowerCase().length.toString().length);
 console.log(text.substring(3, 15).trim().length)
 
 */
+
+// Создал второй файл, т.к этот уже огромен.
