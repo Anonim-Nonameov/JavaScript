@@ -1335,3 +1335,96 @@ if ("name" in userInfoWithUndefined) { // true
   console.log( )
   console.log(userInfoWithUndefined.name) // код работает, ибо условие true.
 }
+
+// Цикл "for..in"
+
+// Для перебора всех свойств объекта используется цикл for..in.
+// Этот цикл отличается от изученного нами ранее цикла for(;;).
+
+/*
+
+
+for (let key in object) {
+тело цикла выполняется для КАЖДОГО свойства объекта
+}
+
+*/
+
+// Реальный пример
+
+// Допустим, у нас есть объект:
+
+let userInfo13 = {
+    name: "Вася",
+    age: 30,
+    address: {
+        city: "Uzhhorod",
+        street: "Freedom"
+    }
+}
+
+// И мы хотим вывести в консоль свойста объекта в таком виде:
+
+/*
+
+
+ключ (свойство)
+значение
+ключ (свойство)
+значение
+ключ (свойство)
+значение
+
+*/
+
+// Используем для этого цикл for..in!
+
+for (let key in userInfo13) {
+    // вот наши ключи выводятся в консоль
+    console.log( )
+    console.log(key, "- значение будет выведено внизу") // name, age, address
+    
+    // а вот и их значения
+    console.log( )
+    console.log(userInfo13[key]) // "Вася", 30, Object {}
+}
+
+// Всё вывелось так как надо, но..
+
+// ..но мы не вывели в консоль свойства и значения объекта address!
+// Теперь нам необходимо вывести значения ключей в объекте address, который
+// располагается внутри объекта userInfo13. -
+
+for (let key in userInfo13.address) {
+    // ключи объекта address
+    console.log( )
+    console.log("это свойство объекта address:", key, "- значение будет выведено внизу") // city, street
+    
+    // а вот и их значения
+    console.log( )
+    console.log(userInfo13.address[key])
+}
+
+// Методы объекта
+
+// О методах мы ещё поговорим (а на самом деле, ФПЖ почему-то очень тянет эту тему..
+// так и хочется прийти к нему и сказать - НЕ ТЯНИ РЕЗИНУ, ДАВАЙ О МЕТОДАХ! :-),
+// а пока что скажем, что у нас в объекте есть свойство - функция:
+
+let userInfoWithFunction = {
+    
+    name: "Вася",
+    age: 30,
+    
+    address: {
+        city: "Uzhhorod",
+        street: "Freedom",
+    },
+    
+    showInfo: function () {
+        сonsole.log(`${userInfoWithFunction.name}, ${userInfoWithFunction.age} лет. Адрес: г.${userInfoWithFunction.city}, ул. ${userInfoWithFunction.street}.`)
+    },
+    
+}
+
+userInfoWithFunction.showInfo()
