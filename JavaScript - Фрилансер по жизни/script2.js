@@ -1380,12 +1380,12 @@ let userInfo13 = {
 // Используем для этого цикл for..in!
 
 for (let key in userInfo13) {
-    // вот наши ключи выводятся в консоль
     console.log( )
+    // вот наши ключи выводятся в консоль
     console.log(key, "- значение будет выведено внизу") // name, age, address
     
-    // а вот и их значения
     console.log( )
+    // а вот и их значения
     console.log(userInfo13[key]) // "Вася", 30, Object {}
 }
 
@@ -1420,11 +1420,142 @@ let userInfoWithFunction = {
         city: "Uzhhorod",
         street: "Freedom",
     },
-    
-    showInfo: function () {
-        сonsole.log(`${userInfoWithFunction.name}, ${userInfoWithFunction.age} лет. Адрес: г.${userInfoWithFunction.city}, ул. ${userInfoWithFunction.street}.`)
+
+      // Полная запись
+    // showInfo: function () {
+      // console.log( )
+      // console.log(`${userInfoWithFunction.name}, ${userInfoWithFunction.age} лет. Адрес: г.${userInfoWithFunction.address.city}, ул. ${userInfoWithFunction.address.street}.`)
+    // },
+
+      // Укороченная запись
+    showInfo() {
+        console.log( )
+        console.log(`${userInfoWithFunction.name}, ${userInfoWithFunction.age} лет. Адрес: г.${userInfoWithFunction.address.city}, ул.${userInfoWithFunction.address.street}.`)
     },
     
 }
 
-userInfoWithFunction.showInfo()
+userInfoWithFunction.showInfo() // => "Вася, 30 лет. Адрес: г.Uzhhorod, ул.Freedom."
+
+// Обратились мы к нашему методу, к нашей функции, очень просто.
+// Обратится к такой функции можно так же, как и к любым другим ключам (свойствам).
+// Мы написали название переменной в которой хранится объект, и через точку
+// как бы заставили объект запустить эту функцию.
+
+// Методы объекта: использование this
+
+// This - английское слово, означает "этот".
+// В нашей функции выше, мы прописывали название объекта для вывода значения
+// его свойства:
+
+// userInfoWithFunction.name
+
+// Мы могли бы сократить эту запись, написав вместо userInfoWithFunction - this,
+// что подразумевает текущий объект.
+// Что делает this?
+// Он обращается к ЭТОМУ объекту (т.е, к родительскому) - в нашем случае это
+// userInfoWithFunction. Эта запись была бы наиболее короткой, можно даже сравнить:
+
+// userInfoWithFunction.key
+// this.key
+
+// Разница аж в 16 символов!
+// Используем же this -
+
+let userInfoWithFunction2 = {
+    
+  name: "Вася",
+  age: 30,
+  
+  address: {
+      city: "Uzhhorod",
+      street: "Freedom",
+  },
+
+  showInfo() {
+      console.log( )
+      console.log(`${this.name}, ${this.age} лет. Адрес: г.${this.address.city}, ул.${this.address.street}.`)
+  },
+  
+}
+
+userInfoWithFunction2.showInfo()
+
+// Теперь сравним две полные записи:
+
+// console.log(`${this.name}, ${this.age} лет. Адрес: г.${this.address.city}, ул.${this.address.street}.`)
+// => 103 символа (включая пробелы)
+
+// console.log(`${userInfoWithFunction.name}, ${userInfoWithFunction.age} лет. Адрес: г.${userInfoWithFunction.address.city}, ул.${userInfoWithFunction.address.street}.`)
+// => 168 символа (включая пробелы)
+
+// Как-то так..)
+
+// Методы объекта: использование this (объект в объекте и ошибка)
+
+// Сразу о главном: если мы используем this внутри свойства-объекта (свобъекта) -
+// будет ошибка:
+
+/*
+
+let объект = {
+  свойство1.name: значение1,
+  свойство2.age: значение2,
+  свойство3.address: {
+    свойство3.1.city: значение3.1.Uzhhorod,
+    свойство3.2.street: значение3.2.Freedom,
+  },
+
+  свойство4_функция.showInfo(): {
+      свойство4.1_функция.show() {
+        console.log(`${this.name}, ${this.age} лет. Адрес: г.${this.address.city}, ул.${this.address.street}.`)
+    }
+
+      show()
+  },
+}
+
+объект.showInfo() => Uncaught TypeError: Cannot read property 'city' of undefined
+
+*/
+
+// Фух.. устал. Писать такие таблицы - дело не из лёгких, хехе.
+
+// Так, сразу к делу - почему произошла ошибка? -
+// всё дело в том, что у нас есть свойсто-функция-объект, а внутри неё есть другая
+// функция, которая хранит в себе console.log() и некий код уже внутри console.log().
+// Это то ладно, но почему не работает то? - а щас объясню:
+// Функция show вызывает this будучи внутри функции showInfo, которая внутри
+// главного объекта userInfoWithFunction2.
+// Т.е, this запрашивает свойства у showInfo а не у userInfoWithFunction2.
+
+// Или ещё короче, представим диалог show и showInfo:
+
+/*
+
+show(): эй, бро, мне тут в console.log() по this передают name. Есть-нет?
+
+showInfo() отвечает: в смысле? у меня такого свойства нет, о чём ты?
+
+show(): а age есть?
+
+showinfo(): ээ.. нету, бро, нету, говорю же.
+
+show(): эх, хорошо, тогда - есть ли у тебя свойство-объект address, с ключом city?
+
+showInfo(): чё ты несёшь? откуда ты вообще всё это берешь, блин? не с той ноги встал что-ли?
+
+show(): так.. если у тебя нету city, то можешь дать мне street?
+
+showInfo(): да иди ты! бро, я думаю, что тебе нужно хорошенько выспаться!
+
+show(): ах так.. ну и ладно! пошёл ты, я и без тебя справлюсь!
+
+*/
+
+// P.S - в таких "историях" я не мастер, так что вот.. :D
+
+// Ну и на последок ещё раз скажу, что this требует свойства У РОДИТЕЛЯ, а тут
+// у нас функция в функции - и что делать? она (функция show) сразу подумает
+// "надо бы у родителя showInfo спросить о таком свойстве.", а там её - нету,
+// так что у нас будет ошибка!
