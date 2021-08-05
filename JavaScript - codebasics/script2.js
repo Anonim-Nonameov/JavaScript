@@ -1338,4 +1338,134 @@ function getLetter(text, number) {
 // Задача предиката - получить ответ на вопрос, но обычно этого недостаточно
 // и нужно выполнить определенное действие в зависимости от ответа.
 
+// Напишем функцию, которая определяет тип переданного предложения.
+// Для начала она будет отличать обычные предложения от вопросительных.
+
+const getTypeOfSentence = (sentence) => {
+  const lastChar = sentence[sentence.length - 1];
+  if (lastChar === '?') {
+    return 'question';
+  }
+
+  return 'general';
+};
+
+console.log()
+console.log(getTypeOfSentence('Hodor')) // => 'general'
+console.log()
+console.log(getTypeOfSentence('Hodor?')) // => 'question'
+
+// If - конструкция языка, управляющая порядком выполнения инструкций.
+// В скобках ей передается выражение-предикат, а затем описывается весь блок
+// кода в фигурных скобках. Этот блок кода будет выполнен, только если предикат
+// вернул нам true.
+
+// Если предикат - ложь, то блок кода в фигурных скобках пропускается, и функция
+// продолжает своё выполнение дальше. В нашем случае следующая строчка кода -
+// «return 'general'»  - заставит функцию вернуть строку и завершиться.
+
+// Как-то раз я писал о return. Так вот - я кое что забыл дописать:
+// return может быть где угодно в функции. В том числе внутри блока кода с условием.
+
+// Если в фигурных скобках после if содержится только одна строчка кода, то
+// фигурные скобки можно не писать и сделать вот так:
+
+/*
+
+const getTypeOfSentence = (sentence) => {
+
+const lastChar = sentence[sentence.length - 1]
+
+if (lastChar === '?')
+  return 'question'
+
+return 'general'
+
+*/
+
+// Но так лучше не делать и писать фигурные скобки. В таком случае всегда
+// явно видно, где начинается и где заканчивается тело условия. Код становится
+// более чётким и понятным.
+
+// Задача из урока:
+
+/*
+
+Текст задачи, задача:
+
+Реализуйте функцию getSentenceTone(), котоаря принимает строку и определяет
+тон предложения.
+Если все символы в верхнем регистре, то это вопль - 'scream'. В ином случае -
+нормальное, обычное предложение - 'general'.
+
+Примеры вызова:
+
+getSentenceTone('Hello') => general
+getSentenceTone('WOW') => scream
+
+Алгоритм:
+
+1) Сгенерируйте строку в верхнем регистре на основе строки-аргумента с помощью-
+-метода строк toUpperCase
+
+2) Сравните её с исходной строкой:
+--Если строки равны, значит, строка-аргумент в верхнем регистре.
+----В ином случае-строка аргумент не в верхнем регистре.
+
+Моё решение:
+
+const getSentenceTone = (string) => {
+  const SIU = string.toUpperCase()
+  
+  if (string === SIU) {
+    return 'scream'
+  }
+  
+  return 'general'
+}
+
+P.S:
+
+SIU - "String In Uppercase"
+
+Решение учителя:
+
+const getSentenceTone = (sentence) => {
+  if (sentence.toUpperCase() === sentence) {
+    return 'scream';
+  }
+  return 'general';
+};
+
+*/ 
+
+// Else
+
+// Напишем функцию getTypeOfSentence2(), которая анализирует текст и возвращает
+// описание его тона: для обычных предложений - 'General sentence', для вопро-
+// -сительных - 'Question sentence'.
+
+
+
+const getTypeOfSentence2 = (sentence) => {
+  let sentenceType;
+
+  // Предикат, проверяющий окончание текста
+  // Если он оканчивается на символ '?', то вернется true
+  // Иначе - false
+
+  if (sentence.endsWith('?')) {
+    sentenceType = 'Question'
+  } else {
+    sentenceType = 'General'
+  }
+
+  return `${sentenceType}  sentence`
+}
+
+console.log( )
+console.log(getTypeOfSentence2('Hello'))
+console.log( )
+console.log(getTypeOfSentence2('How are you?'))
+
 // Допишу позже...
