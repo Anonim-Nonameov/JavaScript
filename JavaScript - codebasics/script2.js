@@ -14,7 +14,7 @@ const email = 'support@hexlet.io';
 const title = 'Помогите';
 const body = 'Я написал историю успеха, как я могу получить скидку?';
 
-// Один маленький вызов — и много логики внутри
+Один маленький вызов — и много логики внутри
 send(email, title, body);
 
 */
@@ -1464,8 +1464,234 @@ const getTypeOfSentence2 = (sentence) => {
 }
 
 console.log( )
-console.log(getTypeOfSentence2('Hello'))
+console.log(getTypeOfSentence2('Hello'), '- 1-ый результат работы функции getTypeOfSentence2')
 console.log( )
-console.log(getTypeOfSentence2('How are you?'))
+console.log(getTypeOfSentence2('How are you?'), '- 2-ой результат работы функции getTypeOfSentence2')
 
-// Допишу позже...
+// Мы добавили метод endsWith(), который определеяет, совпадает ли конец строки
+// с указанной. И мы прописали его в if, поэтому наш код с if можно прочитать
+// так: "ЕСЛИ предложение кончается на ?, то тогда тип предложения - вопросительный".
+// Ещё мы добавили новое ключевое слово, else, и ещё добавили новый блок с фигурными
+// скобками. А что такое else? else выполняется, если условие if - ложное.
+// Т.е, если у if условие будет ложным, false, то его
+// код (sentenceType = 'Questiion') не будет выполнен!
+// Но, мы поставили else, и внутри него нет каких-либо условий.
+// И это нормально, ибо else работает только с false, он не надеется у себя
+// в условии (хотя его у else вообще нет.. бедняга :D) встретить true.
+// Так вот, мы поставили else, а внутри него такой вот код:
+// «sentenceType = 'General'». Он отработает только если условие if - false.
+
+// И ещё, существует два способа оформления конструкции if-else. С помощью
+// отрицания можно измениит порядок блоков, и сломать значение if и else:
+
+const getTypeOfSentence_Reverse = (sentence) => {
+  let sentenceType;
+
+  if (!sentence.endsWith('?')) {
+    sentenceType = 'Question'
+  } else {
+    sentenceType = 'General'
+  }
+
+  return `${sentenceType}  sentence`
+}
+
+console.log( )
+console.log(getTypeOfSentence_Reverse('Hello'), '- 1-ый результат работы функции getTypeOfSentence_Reverse')
+console.log( )
+console.log(getTypeOfSentence_Reverse('How are you?'), '- 2-ой результат работы функции getTypeOfSentence_Reverse')
+
+// Тут даже объяснять нечего.
+
+// Но какой способ предпочтительнее?
+// Человеческому мозгу проще мыслить прямолинейно, а не через отрицание (хоть
+// наш мозг - самый мощный компьютер в мире).
+
+// "Старайтесь выбирать проверку, которая не содержит отрицаний, и подстраивайте
+// содержимое блоков под неё." - (C) - Hexlet
+
+// Задача из урока:
+
+/*
+
+Текст задачи, задача:
+
+Реализуйте функцию buildUrl(), которая принимает на вход адрес страницы
+(без указания домена) и имя домена, а возвращает полный url со схемой https.
+Первым параметром в функцию могут быть переданы адреса с ведущим слешем / и
+без него. Задача функции обрабатывать эту ситуацию, чтобы слеш не дублировался.
+
+Примеры вызова:
+
+buildUrl('pages/about', 'hexlet.io') => https://hexlet.io/pages/about
+buildUrl('/pages/about', 'hexlet.io') => https://hexlet.io/pages/about
+
+------Для главной страницы слэш в конце обязателен
+buildUrl('/', 'ru.code-basics.com'); => 'https://ru.code-basics.com/'
+buildUrl('', 'ru.code-basics.com'); => 'https://ru.code-basics.com/'
+
+Примечания:
+
+Для реализации этой функции вам могут понадобиться методы slice() и startsWith().
+
+Моё решение:
+
+const buildUrl = (address, domain) => {
+  if (address.startsWith('/')) {
+    return `https://${domain}/${address.slice(1)}`
+  } else {
+    return `https://${domain}/${address}`
+  }
+}
+
+Решение учителя:
+
+const buildUrl = (url, domain) => {
+  let normalizedUrl;
+  if (url.startsWith('/')) {
+    normalizedUrl = url.slice(1);
+  } else {
+    normalizedUrl = url;
+  }
+  return `https://${domain}/${normalizedUrl}`;
+};
+
+*/
+
+// Конструкция else if
+
+// Функция getTypeOfSentence() из предыдущего урока различает только вопросительные
+// и обычные предложения. А мы добавим и восклицательные предложения:
+
+const getTypeOfSentence3 = (sentence) => {
+  const lastChar = sentence[sentence.length - 1]
+  let sentenceType
+
+  if (lastChar === '!') {
+    sentenceType = 'exclamation'
+  } else {
+    sentenceType = 'normal'
+  }
+
+  if (lastChar === '?') {
+    sentenceType = 'question'
+  }
+
+  return `Sentence is: ${sentenceType}`
+}
+
+console.log( )
+console.log(getTypeOfSentence3('Who?'), '- результат выполнения функции getTypeOfSentence3')
+console.log( )
+console.log(getTypeOfSentence3('No'), '- результат выполнения функции getTypeOfSentence3')
+console.log( )
+console.log(getTypeOfSentence3('No!'), '- результат выполнения функции getTypeOfSentence3')
+
+// Мы добавили ещё одну проверку ("exclamation" - переводится "восклицание").
+// Технически функция работает, но с точки зрения семантики (ох уж эта семантика..)
+// есть проблемы.
+
+/*
+
+--Проверка на наличие вопросительного знака происходит в любом случае, даже если уже был обнаружен восклицательный знак.
+
+----Ветка else описана именно для первого условия, но не для второго.
+
+*/
+
+// Поэтому, правильнее будет воспользоваться ещё одной возможностью условной конструкции:
+
+const getTypeOfSentence4 = (sentence) => {
+  const lastChar = sentence[sentence.length - 1]
+  let sentenceType
+
+  if (lastChar === '?') {
+    sentenceType = 'question'
+  } else if (lastChar === '!') {
+    sentenceType = 'exclamation'
+  } else {
+    sentenceType = 'normal'
+  }
+
+  return `Sentence is: ${sentenceType}`
+}
+
+console.log( )
+console.log(getTypeOfSentence4('Who?'), '- результат выполнения функции getTypeOfSentence4')
+console.log( )
+console.log(getTypeOfSentence4('No'), '- результат выполнения функции getTypeOfSentence4')
+console.log( )
+console.log(getTypeOfSentence4('No!'), '- результат выполнения функции getTypeOfSentence4')
+
+// Теперь все условия выстроены в единую в конструкцию.
+// 'else if' - это "если не выполнено предыдущее условие, но выполнено текущее".
+// Получается такая вот схема:
+
+/*
+
+--Если последний символ ?, то 'question'
+----Иначе, если последний символ это !, то 'exclamation'
+------Иначе 'normal'
+
+*/
+
+// И выполнится только один из блоков кода, относящихся ко всей конструкции if.
+
+// Задача из урока:
+
+/*
+
+Текст задачи:
+
+На электронной карте Вестероса (говорю же, игра престолов), которую реализовал
+Сэм, союзники Старков отображены зеленым кружком, враги - красным, а нейтральные
+семьи - серым (а ещё напоминает какую нибудь RPG игру, ну или STALKER)
+
+Задача:
+
+Напишите для Сэма функцию whoIsThisHouseToStarks() (ну ничего себе название функции..),
+которая принимает на вход фамилию семьи и возвращает одно из 3-х значений: 'friend',
+'enemy', 'neutral'.
+
+Правила определения:
+
+--Друзья ('friend'): 'Karstark', 'Tally'.
+----Враги ('enemy'): 'Lannister', 'Frey'.
+------Любые другие семьи считаются нейтральными.
+
+Примеры вызова:
+
+whoIsThisHouseToStarks('Karstark'); => 'friend'
+whoIsThisHouseToStarks('Frey'); => 'enemy'
+whoIsThisHouseToStarks('Joar'); => 'neutral'
+whoIsThisHouseToStarks('Ivanov');   => 'neutral'
+
+Моё решение (скажу сразу - это кошмар...):
+
+const whoIsThisHouseToStarks = (familySurname) => {
+  if (familySurname === 'Karstark') {
+    return 'friend'
+  } else if (familySurname === 'Tally') {
+    return 'friend'
+  } else if (familySurname === 'Lannister') {
+    return 'enemy'
+  } else if (familySurname === 'Frey') {
+    return 'enemy'
+  } else {
+    return 'neutral'
+  }
+}
+
+Решение учителя:
+
+const whoIsThisHouseToStarks = (houseName) => {
+  if (houseName === 'Karstark' || houseName === 'Tally') {
+    return 'friend';
+  } else if (houseName === 'Lannister' || houseName === 'Frey') {
+    return 'enemy';
+  }
+
+  return 'neutral';
+};
+
+*/
