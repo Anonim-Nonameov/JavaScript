@@ -1850,3 +1850,5 @@ delete domashkinObj.name
 
 console.log( )
 console.log(domashkinObj.name) // => undefined
+
+// Файл стал слшком большим, создал новый файл.
