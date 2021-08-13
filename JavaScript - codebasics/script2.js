@@ -1805,6 +1805,34 @@ console.log(result); => '!olleH'
 
 Моё решение:
 
-(Задача оказалась сложной, и мне не хватило времени на задачу. Напишу решеине на след. уроке)
+const convertText = (str) => {
+  if (str === '') {
+    return ''
+  }
+  
+  let perevernemTekst = str[0] !== str[0].toUpperCase()
+  if (perevernemTekst == true) {
+    return reverse(str)
+  } else {
+    return str
+  }
+}
+
+// Решение с "?" и ":"
+
+const convertText = (str) => {
+    if (str === '') {
+    return ''
+  }
+  
+  let perevernemTekst = str[0] !== str[0].toUpperCase()
+  return perevernemTekst ? reverse(str) : str
+}
+
+
+
+P.S - Решение пришлось чуток подсмотреть, ибо я так и не нашёл решение этой задачи.
 
 */
+
+// Файл стал слишком большим, создал другой файл.
