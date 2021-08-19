@@ -30,11 +30,11 @@ let a = 5;
 do {
     console.log(a);
     a--;
-} while(a > 10);
+} while(a > 6);
 
 console.log( )
 
-let b = 20;
+let b = 5;
 
 while (b > 0) {
     console.log(b)
@@ -43,10 +43,10 @@ while (b > 0) {
 
 console.log( )
 
-let c = 30;
+let c = 10;
 
 if (c === c) {
-    while (c > 0) {
+    while (c > 4) {
         console.log(c)
         c--;
     }
@@ -65,10 +65,45 @@ function numberToText(a) {
         return 'Четыре'
     } else if (a == 5) {
         return 'Пять'
+    } else {
+        return 'Простите, я могу переводить цифры в текст только от 1 до 5!'
     }
 }
 
-console.log( );
-
-console.log(numberToText(2));
+// console.log( );
+// console.log(numberToText(2)); => "Два"
 // Программа превращает числа в строки (пока что только в диапазоне от 1 до 5)
+
+let user = {
+    name: 'Jordan',
+    age: 30,
+    address: {
+        city: 'Baku',
+        country: 'Azerbaijan'
+    },
+}
+
+for (let key in user) {
+    console.log( )
+    console.log(key, 'AAA')
+
+    console.log( )
+    console.log(user[key], 'BBB')
+}
+
+let user2 = {
+    name: 'Anna',
+    age: 23,
+    address: {
+        city: 'Moscow',
+        country: 'Russia',
+    },
+}
+
+let clone = Object.assign({}, user2)
+
+clone.name = 'Yuliya'
+clone.age = '18'
+
+console.log( )
+console.log(clone)
