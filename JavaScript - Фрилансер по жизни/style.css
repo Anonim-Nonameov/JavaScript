@@ -9,3 +9,17 @@ body {
 .yellow {
 	color: #FFFF00;
 }
+
+/* Изменяем цвет и размер маркеров у списков */
+
+li {
+	color: yellow;
+	font-size: 20px;
+}
+
+/* Возвращаем цвет и размер текста у списков */
+
+li span {
+	color: white;
+	font-size: 16px;
+}
