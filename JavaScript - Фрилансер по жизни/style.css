@@ -10,6 +10,15 @@ body {
 	color: #FFFF00;
 }
 
+.lesson__list-ite_red span {
+	color: #f00;
+}
+
+.lesson__list-ite_blue span {
+	color: #00f;
+}
+
+
 /* Изменяем цвет и размер маркеров у списков */
 
 li {
