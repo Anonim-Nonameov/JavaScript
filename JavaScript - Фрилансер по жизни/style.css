@@ -10,11 +10,11 @@ body {
 	color: #FFFF00;
 }
 
-.lesson__list-ite_red span {
+.lesson__list-item_red span {
 	color: #f00;
 }
 
-.lesson__list-ite_blue span {
+.lesson__list-item_blue span {
 	color: #00f;
 }
 
