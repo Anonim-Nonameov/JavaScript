@@ -32,3 +32,12 @@ li span {
 	color: white;
 	font-size: 16px;
 }
+
+/* Используем псевдоэлемент */
+
+.lesson__list-item_what::after {
+	content: "бесполезный";
+	font-size:  16px;
+	font-style: italic;
+	color: #fff;
+}
