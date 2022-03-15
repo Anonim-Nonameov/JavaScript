@@ -68,3 +68,9 @@ li span {
 	border: 0;
 	padding: 2px 0 2px 10px;
 }
+
+/* Отдельная стилизация для элементов домашнего задания */
+
+.hw__text {
+	padding-top: 20px;
+}
